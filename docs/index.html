@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://ethereum-sepolia-rpc.publicnode.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invisible Solar PK</title>
+<meta name="description" content="Utilities can't see rooftop solar. Invisible Solar PK estimates it from the net-load data they already have, publishes the exact evidence, and fingerprints it for an on-chain registry so anyone can audit it.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f4efe4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f141a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Invisible Solar PK">
+<meta property="og:description" content="Estimate hidden rooftop solar from net load and satellite irradiance, fingerprint each estimate's evidence for an on-chain registry, and re-check the fingerprint in your browser.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js"></script>
+<script type="module" src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<p id="announcer" class="sr-only" aria-live="polite"></p>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a class="brand" href="#top">
+      <svg class="brand__mark" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false">
+        <circle cx="16" cy="16" r="9" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/>
+        <circle cx="16" cy="16" r="4.5" class="brand__sun"/>
+      </svg>
+      <span>Invisible Solar <b>PK</b></span>
+    </a>
+    <nav aria-label="Sections">
+      <ul class="nav">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#registry">Registry</a></li>
+        <li><a href="#limits">Limits</a></li>
+        <li data-link-wrap><a data-link="REPO_URL" href="#" rel="noopener">Code</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--small" href="#verify"><span>Verify<span class="hide-xs"> it yourself</span></span></a>
+  </div>
+</header>
+
+<main id="main">
+  <p id="fatal" class="fatal wrap" role="alert" hidden></p>
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow">Behind-the-meter solar · open data · auditable estimates</p>
+        <h1 id="hero-title"><span class="h1-ghost">Invisible</span> Solar <span class="h1-tag">PK</span></h1>
+        <p class="pitch">Utilities can't see rooftop solar. We estimate it from data they already have, publish the exact evidence, and fingerprint it for an on-chain registry so anyone can audit it.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#verify">Verify an estimate</a>
+          <a class="btn btn--ghost" href="#results">See the results</a>
+        </div>
+      </div>
+
+      <aside class="fieldnote" aria-labelledby="fieldnote-title">
+        <p class="fieldnote__tag mono">Field note · Lahore, Pakistan</p>
+        <h2 id="fieldnote-title">One grid station, two answers</h2>
+        <div class="bars" role="img" aria-label="Rooftop PV at one Lahore grid station: 177 megawatts mapped from satellite imagery, against an indicative registered figure of 95 megawatts.">
+          <div class="bar bar--real">
+            <span class="bar__label">Mapped from satellite imagery</span><span class="bar__value">177 MW</span>
+            <span class="bar__fill" aria-hidden="true"></span>
+          </div>
+          <div class="bar bar--reg">
+            <span class="bar__label">Indicative registered figure</span><span class="bar__value">95 MW</span>
+            <span class="bar__fill" aria-hidden="true"><span class="bar__gap"></span></span>
+          </div>
+        </div>
+        <p class="fieldnote__gap"><strong>≈82 MW</strong><span>more than the indicative registered figure, by the study's satellite estimate (it assumes <span class="nowrap">±5–10%</span> panel-count uncertainty).</span></p>
+        <p class="fieldnote__src">LESCO's 132 kV Old Defence grid station. HeraldX and Renewables First (2026), <a href="https://uploads.renewablesfirst.org/The%20uncounted%20solar%20gigawatts%20-%20Distributed%20solar%20mapping%20and%20grid%20impact%20analysis%20in%20Pakistan.pdf" rel="noopener"><cite>The uncounted solar gigawatts</cite></a>. The study also cites independent estimates of about 38 GW of distributed solar nationally, against an official figure of about 20 GW.</p>
+      </aside>
+    </div>
+
+    <div class="wrap">
+      <ul class="readouts" aria-label="Headline results">
+        <li class="readout">
+          <p class="readout__value" data-stat="recovery">…</p>
+          <p class="readout__label">of rooftop-PV energy recovered across <span data-stat="regions">4</span> Australian regions, scored against AEMO's published series</p>
+          <p class="readout__note">in-sample, 2024<span data-heldout-wrap> · held-out months: <span data-stat="heldout">…</span></span></p>
+        </li>
+        <li class="readout">
+          <p class="readout__value" data-stat="corr">…</p>
+          <p class="readout__label">hourly correlation with AEMO's rooftop PV</p>
+          <p class="readout__note"><span data-stat="corr-day">…</span> in daylight hours only</p>
+        </li>
+        <li class="readout readout--baseline">
+          <p class="readout__value" data-stat="naive">…</p>
+          <p class="readout__label">what a naive midday-dip method recovers without irradiance</p>
+          <p class="readout__note">the baseline to beat</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__num">01 · How it works</p>
+        <h2 id="how-title">From a meter the utility already reads to a number anyone can check</h2>
+        <p class="lede">Rooftop solar hides inside net load: the grid sees demand minus whatever the panels produce. Sunshine leaves a fingerprint in that series. We fit it, publish the exact inputs, and put the file's fingerprint on a ledger.</p>
+      </header>
+
+      <div class="flow" role="list" aria-label="Pipeline, in order">
+        <p class="flow__lane flow__lane--off" aria-hidden="true">Off-chain · data and estimate</p>
+        <p class="flow__lane flow__lane--on" aria-hidden="true">On-chain · BTMRegistry</p>
+
+        <div class="flow__step flow__step--inputs" role="listitem">
+          <div class="flow__card">
+            <span class="flow__n">1a</span>
+            <h3>Net-load meter</h3>
+            <p>Hourly MW at a grid station or region. The utility already records it.</p>
+          </div>
+          <div class="flow__card">
+            <span class="flow__n">1b</span>
+            <h3>NASA POWER</h3>
+            <p>Free satellite irradiance (GHI) and temperature for the same hours.</p>
+          </div>
+        </div>
+        <div class="flow__step" role="listitem">
+          <div class="flow__card">
+            <span class="flow__n">2</span>
+            <h3>IRR estimator</h3>
+            <p>Regress net load on hour × month, day type, degree terms and GHI × a smooth seasonal coefficient β(t).</p>
+            <p class="flow__formula mono">hidden PV = β(t) × GHI</p>
+          </div>
+        </div>
+        <div class="flow__step" role="listitem">
+          <div class="flow__card">
+            <span class="flow__n">3</span>
+            <h3>Evidence file + SHA-256</h3>
+            <p>The exact inputs as a canonical CSV. Its SHA-256 changes if a single byte does.</p>
+          </div>
+        </div>
+        <div class="flow__step flow__step--chain" role="listitem">
+          <div class="flow__card">
+            <span class="flow__n">4</span>
+            <h3>BTMRegistry</h3>
+            <p>The estimator wallet calls <code>attest()</code>: capacity, ±, recovery, evidence hash, code hash.</p>
+          </div>
+        </div>
+        <div class="flow__step flow__step--chain" role="listitem">
+          <div class="flow__card">
+            <span class="flow__n">5</span>
+            <h3>Regulator decides</h3>
+            <p><code>setStatus()</code> moves each estimate from Pending to Accepted or Disputed, with a note. In this demo a script plays the regulator.</p>
+          </div>
+        </div>
+        <div class="flow__step flow__step--chain" role="listitem">
+          <div class="flow__card">
+            <span class="flow__n">6</span>
+            <h3>Planners read it</h3>
+            <p>Planners read <code>latestAccepted()</code>. Anyone can re-hash the file and call <code>verify()</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <figure class="arch">
+        <a href="architecture.svg" class="arch__link">
+          <img src="architecture.svg" width="1600" height="1060" loading="lazy" decoding="async"
+               alt="Architecture. Off-chain: a net-load meter and NASA POWER irradiance feed the IRR estimator, which writes an evidence file whose SHA-256 is computed and which is published on GitHub Pages (a Zenodo mirror is planned, not yet made). On-chain: the estimator wallet calls attest on BTMRegistry and the regulator wallet accepts or disputes. Verifiers: planners read latestAccepted; anyone re-hashes the file in a browser or on the command line and calls verify.">
+        </a>
+        <figcaption>Architecture: off-chain estimate, on-chain fingerprint, and the people who check it. <a href="architecture.svg">Open full size</a>.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="results" aria-labelledby="results-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__num">02 · Results</p>
+        <h2 id="results-title">Tested where the answer is published</h2>
+        <p class="lede">Australia's market operator (AEMO) publishes rooftop PV for every region. We hide it, run the estimator on net load and NASA irradiance alone, then compare. Full year 2024, hourly; the AEMO series is never used in fitting.</p>
+      </header>
+      <div class="toolbar">
+        <p class="toolbar__note">Charts show two spring weeks with sunny and cloudy days. Hover, or focus a chart and use the arrow keys.</p>
+        <button type="button" class="toggle" id="toggle-net" aria-pressed="false">
+          <span class="toggle__track" aria-hidden="true"><span class="toggle__thumb"></span></span>
+          Show net load
+        </button>
+      </div>
+      <div class="regions" id="regions">
+        <p class="loading">Loading results…</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="registry" aria-labelledby="registry-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__num">03 · Registry</p>
+        <h2 id="registry-title">Every estimate carries the fingerprint of its evidence</h2>
+        <p class="lede">Each row is one <code>attest()</code> call to the BTMRegistry contract. The capacity is the model's; the hash pins the exact file it came from.</p>
+        <p class="disclosure"><strong>No regulator has reviewed these estimates.</strong> The statuses are a demonstration. The regulator role is played by an account the author controls, and a script accepts an estimate automatically when its in-sample recovery against AEMO is between 70% and 130%. That is a demo rule, not a regulatory review. The local demo also disputes one record whose evidence file it tampered with on purpose.</p>
+      </header>
+      <div id="netbadge"></div>
+      <div class="table-wrap">
+        <table class="registry">
+          <caption class="sr-only">BTMRegistry attestations: every attest() call in the record, plus any station not anchored yet</caption>
+          <thead>
+            <tr>
+              <th scope="col">Station</th>
+              <th scope="col" class="num">Capacity</th>
+              <th scope="col" class="num">±&nbsp;seasonal</th>
+              <th scope="col" class="num">In-sample recovery</th>
+              <th scope="col">Status</th>
+              <th scope="col">Evidence SHA-256</th>
+              <th scope="col">Tx</th>
+            </tr>
+          </thead>
+          <tbody id="registry-body"></tbody>
+        </table>
+      </div>
+      <dl class="facts" id="registry-facts"></dl>
+    </div>
+  </section>
+
+  <section class="section section--console" id="verify" aria-labelledby="verify-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__num">04 · Verify it yourself</p>
+        <h2 id="verify-title">Don't trust us. Re-hash the file.</h2>
+        <p class="lede">Each button downloads the published evidence file, computes its SHA-256 in your browser and compares it with the station's reference hash: its latest accepted record in the registry, or the evidence manifest if nothing is anchored yet. Then change one reading by 1 MW and watch the fingerprint break.</p>
+      </header>
+
+      <div class="console">
+        <div class="console__bar">
+          <span class="console__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="mono">verify.js · SHA-256 via WebCrypto · nothing you load leaves this browser</span>
+          <button type="button" class="cbtn cbtn--go" id="verify-all">Verify all four</button>
+        </div>
+        <ul class="vrows" id="verify-rows"></ul>
+      </div>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>Check a file you already have</h3>
+          <label class="field" for="drop-station">Compare against</label>
+          <select id="drop-station" class="select"></select>
+          <label class="drop" id="drop-zone" for="drop-file">
+            <input type="file" id="drop-file" class="sr-only">
+            <span class="drop__title">Drop a file here, or <u>choose one</u></span>
+            <span class="drop__note">It is hashed locally and never uploaded.</span>
+          </label>
+          <div id="drop-out" aria-live="polite"></div>
+          <ol class="tryit">
+            <li>Use <b>Download file</b> above, then drop that file here: <b>MATCH</b>.</li>
+            <li>Change one digit in a text editor, save, drop it again: <b>MISMATCH</b>.</li>
+            <li>Re-save it with Windows (CRLF) line endings: also <b>MISMATCH</b>. The hash covers every byte, not just the numbers.</li>
+          </ol>
+        </div>
+        <div class="tool">
+          <h3>Or use your own tools</h3>
+          <p>Download <span id="cli-file"></span>, then run one of these. Case does not matter.</p>
+          <ul class="cmds" id="cli-cmds"></ul>
+          <p class="expected-label">Expected SHA-256</p>
+          <p class="expected" id="cli-expected"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="limits" aria-labelledby="limits-title">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__num">05 · Honest limits</p>
+        <h2 id="limits-title">What this does not show</h2>
+      </header>
+      <ol class="limits">
+        <li><strong>The headline recovery is in-sample.</strong> The model is fitted on the same year of net load and irradiance it is scored on; AEMO's rooftop PV is never used in fitting. <span data-limit="heldout">The repository also reports a held-out split (fitted on odd months, scored on even months).</span> Neither is a forecast test.</li>
+        <li><strong>Not every region is close.</strong> <span data-limit="under">New South Wales and Queensland under-recover by about 26%</span>. In New South Wales the shortfall is concentrated in summer, when sunshine and air-conditioning load rise together.</li>
+        <li><strong>The yardstick is itself an estimate.</strong> AEMO's rooftop-PV series is measurement-based (upscaled from metered systems), not a census of every roof.</li>
+        <li><strong>The ± is a seasonal spread, not a confidence interval.</strong> It is the standard deviation of twelve monthly capacity estimates.</li>
+        <li><strong>Small feeders are hard.</strong> On Pakistani household data (LUMS REWD-P, with PV of known size injected) the estimator recovers only about 33–40% for groups of 2 to 10 homes. It is meant for grid-station or DISCO scale, not a single street.</li>
+        <li><strong>A ledger proves integrity, not truth.</strong> <span data-limit="chain">The registry has not been deployed to a public network yet.</span> The chain proves the evidence file was not changed after it was anchored; it does not prove the meter was honest or the model right. That is what a regulator's accept/dispute step and the open code are for; in this demo that step is a script, not a regulator.</li>
+        <li><strong>The charts are a slice.</strong> They show <span data-limit="window">two weeks</span>; the evidence files hold the full year.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <p class="footer__brand">Invisible Solar PK</p>
+      <p>Adan Khalid · NUST College of Electrical &amp; Mechanical Engineering. Research code, not peer reviewed. MIT licence.</p>
+      <p class="footer__ai">Built with AI coding assistance. The Australian results on this page are read from the published data files when the page loads.</p>
+    </div>
+    <div>
+      <p class="footer__head">Links</p>
+      <ul class="footer__links">
+        <li data-link-wrap><a data-link="REPO_URL" href="#" rel="noopener">Source code</a></li>
+        <li data-link-wrap><a data-link="VIDEO_URL" href="#" rel="noopener">Demo video</a></li>
+        <li data-link-wrap><a data-link="PAPER_URL" href="#" rel="noopener">Technical paper</a></li>
+        <li><a href="architecture.svg">Architecture diagram</a></li>
+        <li><a href="data/manifest.json">Evidence manifest (JSON)</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer__head">Data</p>
+      <ul class="footer__links">
+        <li>AEMO: NEM demand and MMSDM rooftop PV</li>
+        <li>NASA POWER: satellite irradiance and temperature</li>
+        <li>LUMS Energy Institute: REWD-P household data</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

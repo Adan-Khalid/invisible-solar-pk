@@ -1,0 +1,76 @@
+BTMRegistry end-to-end demo
+Network: in-process Hardhat network (local, ephemeral; nothing here is on a public chain)
+Evidence: chain/evidence/manifest.json - 4 AEMO 2024 regions, estimator code_hash 3dce0ba4e45b...
+Accounts: 0 regulator 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+          1 estimator 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+          2 auditor / stranger 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+
+[1] Deploy BTMRegistry; the deployer (account 0) becomes the regulator
+    contract 0x5FbDB2315678afecb367f032d93F642f64180aa3   gas 986,475
+    PASS  regulator() is account 0
+
+[2] The regulator tries to make itself an estimator
+    PASS  reverted with RegulatorCannotEstimate: no address may hold both roles at once
+
+[3] The regulator authorises account 1 as an estimator
+    setEstimator(account 1, true)   gas 47,980
+    PASS  isEstimator(account 1) is true
+
+[4] A stranger (account 2) tries to attest
+    PASS  reverted with NotEstimator
+
+[5] The estimator anchors the 4 real AEMO 2024 regions
+    station     capacity MW   +/- MW*   in-sample recovery    sha256 (first 12)        gas
+    AEMO/NSW1         4,222     1,372               73.5 %    bea275a6aab7         143,652
+    AEMO/QLD1         3,593     1,013               74.3 %    4706e1aba9bc         143,652
+    AEMO/VIC1         3,724       972              102.8 %    282f7a85a585         143,652
+    AEMO/SA1          1,824       422              100.9 %    64ea230372a8         143,238
+    * +/- is the seasonal spread of the 12 monthly capacity estimates, not a confidence interval.
+    In-sample recovery = estimated energy / AEMO's rooftop-PV estimate, 2024; fitted on the
+    same year's net load and irradiance, the model never sees AEMO's PV series.
+    PASS  AEMO/NSW1 index 0: on-chain record equals the manifest (Pending)
+    PASS  AEMO/QLD1 index 0: on-chain record equals the manifest (Pending)
+    PASS  AEMO/VIC1 index 0: on-chain record equals the manifest (Pending)
+    PASS  AEMO/SA1 index 0: on-chain record equals the manifest (Pending)
+
+[6] The auditor (account 2) re-hashes each published file and calls verify()
+    AEMO/NSW1   docs/evidence/AEMO_NSW1_2024.csv  local bea275a6aab7  on-chain bea275a6aab7  MATCH
+    PASS  AEMO/NSW1: verify() is true for the published file
+    AEMO/QLD1   docs/evidence/AEMO_QLD1_2024.csv  local 4706e1aba9bc  on-chain 4706e1aba9bc  MATCH
+    PASS  AEMO/QLD1: verify() is true for the published file
+    AEMO/VIC1   docs/evidence/AEMO_VIC1_2024.csv  local 282f7a85a585  on-chain 282f7a85a585  MATCH
+    PASS  AEMO/VIC1: verify() is true for the published file
+    AEMO/SA1    docs/evidence/AEMO_SA1_2024.csv   local 64ea230372a8  on-chain 64ea230372a8  MATCH
+    PASS  AEMO/SA1: verify() is true for the published file
+
+[7] Tamper test: +1 MW on one hourly AEMO/NSW1 net_load reading (2024-01-01T13:00)
+    original row  2024-01-01T13:00,6020.738,416.230,23.900,2033.479
+    edited row    2024-01-01T13:00,6021.738,416.230,23.900,2033.479
+    local f1436f24318f  on-chain bea275a6aab7  MISMATCH
+    PASS  verify() rejects the edited file (1 of 8,782 hourly readings changed by 1.000 MW)
+
+[8] Review: the estimator tries to accept its own attestation; then the regulator decides
+    PASS  reverted with NotRegulator
+    AEMO/NSW1   in-sample recovery  73.52% within 70-130%  -> Accepted  gas 36,540
+    AEMO/QLD1   in-sample recovery  74.26% within 70-130%  -> Accepted  gas 36,540
+    AEMO/VIC1   in-sample recovery 102.81% within 70-130%  -> Accepted  gas 36,552
+    AEMO/SA1    in-sample recovery 100.90% within 70-130%  -> Accepted  gas 36,540
+    PASS  on-chain statuses follow the 70-130% acceptance rule (4/4 Accepted)
+
+[9] A bad submission: a second AEMO/NSW1 attestation whose hash is not the published file's
+    estimator: attest(AEMO/NSW1) -> index 1, evidenceHash f1436f24318f...
+               evidenceURI chain/evidence/AEMO_NSW1_2024.csv (points at the published file)
+    auditor:   sha256(published file) bea275a6aab7 vs on-chain f1436f24318f  MISMATCH
+    PASS  auditor detects it: verify(AEMO/NSW1, 1, sha256(published file)) is false
+    regulator: setStatus(AEMO/NSW1, 1, Disputed,
+               "auditor: evidence hash does not match the published file")
+    PASS  AEMO/NSW1 index 1 is Disputed on chain
+    planner:   latestAccepted(AEMO/NSW1) -> 4,222 MW, evidence bea275a6aab7...
+    PASS  latestAccepted(AEMO/NSW1) still returns the original, accepted attestation (index 0)
+
+[10] Result
+    18/18 checks passed
+    wrote chain/deployments/hardhat-demo.json
+    wrote docs/data/deployment.json
+    wrote results/tables/chain_attestations.csv
+    wrote results/tables/chain_demo_log.txt

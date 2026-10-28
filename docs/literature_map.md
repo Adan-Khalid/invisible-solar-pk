@@ -1,0 +1,70 @@
+# Literature map
+
+Further reading collected while building Invisible Solar PK: short-term load forecasting, behind-the-meter (BTM) solar and net load, Pakistan's power sector, demand flexibility and weather proxies. None of these sources provides a number quoted in the README; those come from `results/tables/` and the sources in [`data/README.md`](../data/README.md).
+
+**Checked on 24 Oct 2026.** Each entry's title, authors and venue were checked against Crossref, arXiv or the publisher's page, and each link was fetched. DOIs are from Crossref (DataCite for the Mendeley dataset). Where a code repository has moved, the current address is given. Entries that could not be fully checked say so.
+
+## Reviews and benchmarks
+
+- S. Haben, S. Arora, G. Giasemidis, M. Voss, D. Vukadinović Greetham, "Review of low voltage load forecasting: Methods, applications, and recommendations," *Applied Energy* 304, 117798, 2021. [doi:10.1016/j.apenergy.2021.117798](https://doi.org/10.1016/j.apenergy.2021.117798), [arXiv:2106.00006](https://arxiv.org/abs/2106.00006)
+- T. Hong, S. Fan, "Probabilistic electric load forecasting: A tutorial review," *International Journal of Forecasting* 32(3), 914-938, 2016. [doi:10.1016/j.ijforecast.2015.11.011](https://doi.org/10.1016/j.ijforecast.2015.11.011)
+- T. Hong, P. Pinson, S. Fan, H. Zareipour, A. Troccoli, R. J. Hyndman, "Probabilistic energy forecasting: Global Energy Forecasting Competition 2014 and beyond," *International Journal of Forecasting* 32(3), 896-913, 2016. [doi:10.1016/j.ijforecast.2016.02.001](https://doi.org/10.1016/j.ijforecast.2016.02.001). Data: [GEFCom2014 load forecasting data](https://blog.drhongtao.com/2017/03/gefcom2014-load-forecasting-data.html) (T. Hong's blog, 2017).
+- Z. Wang, L. Von Krannichfeldt, Q. Wen, C. Zhang, L. Sun, S. Pan, Y. Wang, "Bridging AI and Energy Forecasting: An Autonomous Workflow with Customized Toolkit," [arXiv:2307.07191](https://arxiv.org/abs/2307.07191) (v1 2023, current version 2026). Code: [github.com/Leo-VK/EnFoAV](https://github.com/Leo-VK/EnFoAV) (the former ProEnFo repository address redirects here).
+- P. Emami, A. Sahu, P. Graf, "BuildingsBench: A Large-Scale Dataset of 900K Buildings and Benchmark for Short-Term Load Forecasting," *Advances in Neural Information Processing Systems* 36 (Datasets and Benchmarks), 19823-19857, 2023. [Proceedings page](https://papers.neurips.cc/paper_files/paper/2023/hash/3f17bf868966df01ca125e5bbc9ee24e-Abstract-Datasets_and_Benchmarks.html). Code: [github.com/NatLabRockies/BuildingsBench](https://github.com/NatLabRockies/BuildingsBench) (formerly NREL/BuildingsBench).
+- B. C. Erdener, C. Feng, K. Doubleday, A. Florita, B.-M. Hodge, "A review of behind-the-meter solar forecasting," *Renewable and Sustainable Energy Reviews* 160, 112224, 2022. [doi:10.1016/j.rser.2022.112224](https://doi.org/10.1016/j.rser.2022.112224)
+
+## Time-series foundation models for load forecasting
+
+- A. F. Ansari et al., "Chronos: Learning the Language of Time Series," [arXiv:2403.07815](https://arxiv.org/abs/2403.07815), 2024. Code: [github.com/amazon-science/chronos-forecasting](https://github.com/amazon-science/chronos-forecasting)
+- A. Das, W. Kong, R. Sen, Y. Zhou, "A decoder-only foundation model for time-series forecasting" (TimesFM), [arXiv:2310.10688](https://arxiv.org/abs/2310.10688), 2023. Code: [github.com/google-research/timesfm](https://github.com/google-research/timesfm)
+- N. Lin, D. Yun, W. Xia, P. Palensky, P. P. Vergara, "Comparative Analysis of Zero-Shot Capability of Time-Series Foundation Models in Short-Term Load Prediction," [arXiv:2412.12834](https://arxiv.org/abs/2412.12834), 2024.
+- M. Meyer, D. Zapata Gonzalez, S. Kaltenpoth, O. Müller, "Benchmarking Time Series Foundation Models for Short-Term Household Electricity Load Forecasting," *IEEE Access* 13, 218141-218153, 2025. [doi:10.1109/ACCESS.2025.3648056](https://doi.org/10.1109/ACCESS.2025.3648056), [arXiv:2410.09487](https://arxiv.org/abs/2410.09487)
+- L. Simeone, "Time Series Foundation Models for Energy Load Forecasting on Consumer Hardware: A Multi-Dimensional Zero-Shot Benchmark," [arXiv:2602.10848](https://arxiv.org/abs/2602.10848), 2026. ERCOT hourly load 2020-2024; accuracy, interval calibration and robustness. Preprint.
+- T. Kaljevic, I. Arzola, Y. Zhang, "Benchmarking Time Series Foundation Models for Load Forecasting Under Covariate Uncertainty," [arXiv:2610.07232](https://arxiv.org/abs/2610.07232), 2026. The arXiv comment says it was accepted to the 2027 IEEE PES Grid Edge Conference.
+
+## Behind-the-meter PV and net load
+
+- H. Shaker, H. Zareipour, D. Wood, "Estimating Power Generation of Invisible Solar Sites Using Publicly Available Data," *IEEE Transactions on Smart Grid* 7(5), 2456-2465, 2016. [doi:10.1109/TSG.2016.2533164](https://doi.org/10.1109/TSG.2016.2533164)
+- E. C. Kara, C. M. Roberts, M. Tabone, L. Alvarez, D. S. Callaway, E. M. Stewart, "Disaggregating solar generation from feeder-level measurements," *Sustainable Energy, Grids and Networks* 13, 112-121, 2018. [doi:10.1016/j.segan.2017.11.001](https://doi.org/10.1016/j.segan.2017.11.001)
+- Y. Wang, N. Zhang, Q. Chen, D. S. Kirschen, P. Li, Q. Xia, "Data-Driven Probabilistic Net Load Forecasting With High Penetration of Behind-the-Meter PV," *IEEE Transactions on Power Systems* 33(3), 3255-3264, 2018. [doi:10.1109/TPWRS.2017.2762599](https://doi.org/10.1109/TPWRS.2017.2762599)
+- A. M. Campbell, S. Kundu, A. P. Reiman, O. Vasios, I. Beil, A. Eiden, "Clustering Interval Load with Weather to Create Scenarios of Behind-the-Meter Solar Penetration," *2024 IEEE PES General Meeting*, 1-5. [doi:10.1109/PESGM51994.2024.10688495](https://doi.org/10.1109/PESGM51994.2024.10688495), [arXiv:2403.05009](https://arxiv.org/abs/2403.05009)
+- K. Pu, Y. Zhao, "An Unsupervised Similarity-based Method for Estimating Behind-the-Meter Solar Generation," *2023 IEEE PES ISGT*, 1-5. [doi:10.1109/ISGT51731.2023.10066401](https://doi.org/10.1109/ISGT51731.2023.10066401), [Stony Brook record](https://researchconnect.stonybrook.edu/en/publications/an-unsupervised-similarity-based-method-for-estimating-behind-the/)
+- Y. Zhou, M. Wang, "Unifying Load Disaggregation and Prediction for Buildings With Behind-the-Meter Solar" (ULoFo), *IEEE Transactions on Power Systems* 40, 1335-1347, 2025 (online 2024). [doi:10.1109/TPWRS.2024.3431952](https://doi.org/10.1109/TPWRS.2024.3431952), [author PDF](https://sites.ecse.rpi.edu/~wang/pub/TPWRS24.pdf)
+- C. Thepprom, N. Nupairoj, P. Vateekul, "A Deep Learning Framework for Net Load Forecasting With Unsupervised Behind-the-Meter Disaggregated Data," *IEEE Access* 12, 94958-94971, 2024. [doi:10.1109/ACCESS.2024.3425590](https://doi.org/10.1109/ACCESS.2024.3425590)
+- solar-data-tools, an open-source library for PV power time series: [github.com/NatLabRockies/solar-data-tools](https://github.com/NatLabRockies/solar-data-tools) (formerly slacgismo/solar-data-tools).
+
+## Pakistan
+
+- HeraldX and Renewables First, "The uncounted solar gigawatts: Distributed solar mapping and grid impact analysis in Pakistan," 2026. [PDF](https://uploads.renewablesfirst.org/The%20uncounted%20solar%20gigawatts%20-%20Distributed%20solar%20mapping%20and%20grid%20impact%20analysis%20in%20Pakistan.pdf). Satellite and AI mapping of one LESCO grid station; the README's problem framing comes from here.
+- A. A. Mir, Z. A. Khan, A. Altmimi, M. Badar, K. Ullah, M. Imran, S. A. A. Kazmi, "Systematic Development of Short-Term Load Forecasting Models for the Electric Power Utilities: The Case of Pakistan," *IEEE Access* 9, 140281-140297, 2021. [doi:10.1109/ACCESS.2021.3117951](https://doi.org/10.1109/ACCESS.2021.3117951), [open-access copy (Aston)](https://publications.aston.ac.uk/id/eprint/43273/)
+- A. Nadeem, N. Arshad, "PRECON" (Pakistan residential electricity consumption dataset), *Proc. ACM e-Energy 2019*, 52-57. [doi:10.1145/3307772.3328317](https://doi.org/10.1145/3307772.3328317). The project page, https://web.lums.edu.pk/~eig/precon.html, could not be reached on 24 Oct 2026.
+- LUMS Energy Institute, "Residential Energy and Weather Data Pakistan" (REWD-P), [dataset page](https://lei.lums.edu.pk/datasets/residential-energy-and-weather-data-pakistan.html), which could not be reached on 24-25 Oct 2026 (the LUMS Energy Institute site returns HTTP 404 for it). Used in this repository; see [`data/README.md`](../data/README.md).
+- N. Mughees, "FESCO Daily Peak Load Data," Mendeley Data, V1, 2020 (CC BY 4.0). [doi:10.17632/jh8t8hxf9b.1](https://data.mendeley.com/datasets/jh8t8hxf9b/1)
+- NEPRA, State of Industry Reports, [report list](https://nepra.org.pk/publications/State%20of%20Industry%20Reports.php). Used in this repository (2020-2024 reports).
+- Ember, "Methodology" v1.6 (the Pakistan section explains that Ember estimates distributed solar), [PDF](https://files.ember-energy.org/public-downloads/ember_electricity_data_methodology.pdf).
+- Renewables First, "Pakistan's Power Market Insights: Jul-Oct 2024 (4MFY25)," first issue of the series. [PDF](https://uploads.renewablesfirst.org/Power_Market_Insights_Issue_1_fa8e41534a.pdf)
+- R. Ilyas, B. Aftab, "From Net Metering to Net Billing: Tariff Design and Distribution-Sector Stress in Pakistan," PIDE Knowledge Brief No. 2026:149, May 2026. [PDF](https://file.pide.org.pk/pdfpideresearch/kb-149-from-net-metering-to-net-billing-tariff-design-and-distribution-sector-stress-in-pakistan.pdf)
+- W. Abbasi, "Pakistan overhauls rooftop solar policy, cuts rates for excess power sold to grid," *Arab News Pakistan*, 10 Feb 2026. [Article](https://www.arabnews.pk/pakistan/pakistan-overhauls-rooftop-solar-policy-cuts-rates-for-excess-power-sold-to-grid-2632420)
+- "Solar surge slashes DISCOs revenues as grid demand dips," *Profit* (Pakistan Today), 11 Nov 2024. [Article](https://profit.pakistantoday.com.pk/2024/11/11/solar-surge-slashes-discos-revenues-as-grid-demand-dips/)
+
+## Demand flexibility and cooling
+
+- H. Li, Z. Wang, T. Hong, M. A. Piette, "Energy flexibility of residential buildings: A systematic review of characterization and quantification methods and applications," *Advances in Applied Energy* 3, 100054, 2021. [doi:10.1016/j.adapen.2021.100054](https://doi.org/10.1016/j.adapen.2021.100054)
+- Z. Luo, J. Peng, J. Cao, R. Yin, B. Zou, Y. Tan, J. Yan, "Demand Flexibility of Residential Buildings: Definitions, Flexible Loads, and Quantification Methods," *Engineering* 16, 123-140, 2022. [doi:10.1016/j.eng.2022.01.010](https://doi.org/10.1016/j.eng.2022.01.010)
+- H. Li et al., "Data-driven key performance indicators and datasets for building energy flexibility: A review and perspectives," *Applied Energy* 343, 121217, 2023. [doi:10.1016/j.apenergy.2023.121217](https://doi.org/10.1016/j.apenergy.2023.121217), [LBNL record](https://eta-publications.lbl.gov/bibcite/reference/35817)
+- M. Hu, F. Xiao, L. Wang, "Investigation of demand response potentials of residential air conditioners in smart grids using grey-box room thermal model," *Applied Energy* 207, 324-335, 2017. [doi:10.1016/j.apenergy.2017.05.099](https://doi.org/10.1016/j.apenergy.2017.05.099)
+- X. Wu, R. Wu, D. Wang, J. Wei, X. Li, L. L. Lai, C. S. Lai, "Coordinated Air Conditioning Resources Scheduling with High Photovoltaic Penetrations," *2018 International Conference on Power System Technology (POWERCON)*, 2242-2248. [doi:10.1109/POWERCON.2018.8602058](https://doi.org/10.1109/POWERCON.2018.8602058), [open copy (Brunel)](https://bura.brunel.ac.uk/bitstream/2438/22792/1/FullText.pdf)
+- D. Pérez-Piñeiro, S. Skogestad, S. Boyd, "Home Battery Dispatch under a Tiered Peak Power Tariff," [arXiv:2307.07580](https://arxiv.org/abs/2307.07580), 2023.
+- Tools: [energy-py-linear](https://github.com/ADGEfficiency/energy-py-linear) (battery and asset dispatch as linear programs); [OCHRE](https://github.com/NatLabRockies/OCHRE) (residential building and device simulation; formerly NREL/OCHRE).
+
+## Weather proxies and data lists
+
+- P. W. Stackhouse, T. Zhang, B. Macpherson, J. C. Mikovitz, "An Assessment of and Access to NASA CERES Hourly Solar Irradiance Data Products Using POWER Web Services," *Proc. ISES Solar World Congress 2021*, 1-12. [doi:10.18086/swc.2021.37.07](https://doi.org/10.18086/swc.2021.37.07)
+- A. Mutlu, "Comparative evaluation of NASA, ERA5, and observational data for accuracy and reliability," *Theoretical and Applied Climatology* 156, 2025. [doi:10.1007/s00704-025-05605-w](https://doi.org/10.1007/s00704-025-05605-w), [repository record](https://acikerisim.balikesir.edu.tr/items/aaf0c9d6-817f-4629-86be-a899d9141e26). One site in Balıkesir, Turkey; temperature, pressure and wind speed, not irradiance.
+- "Validation of ERA5 and ERA5-Land Reanalysis Data for Daily Air Temperature and Extreme Temperature Indices over Bangladesh," Research Square preprint rs-11138659. [Preprint](https://www.researchsquare.com/article/rs-11138659). Daily maximum and minimum temperature against 31 stations, 1989-2019. Not peer reviewed as far as could be found; the authors were not listed on the page as fetched.
+- Open Energy Transition, awesome-electricity-demand, a curated list of electricity-demand data and tools: [github.com/open-energy-transition/awesome-electricity-demand](https://github.com/open-energy-transition/awesome-electricity-demand)
+
+## Methods and context
+
+- G. Ke, Q. Meng, T. Finley, T. Wang, W. Chen, W. Ma, Q. Ye, T.-Y. Liu, "LightGBM: A Highly Efficient Gradient Boosting Decision Tree," *Advances in Neural Information Processing Systems* 30, 2017. [Proceedings page](https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html). Used by the CFI estimator and the forecasting benchmark.
+- M. Andoni, V. Robu, D. Flynn, S. Abram, D. Geach, D. Jenkins, P. McCallum, A. Peacock, "Blockchain technology in the energy sector: A systematic review of challenges and opportunities," *Renewable and Sustainable Energy Reviews* 100, 143-174, 2019. [doi:10.1016/j.rser.2018.10.014](https://doi.org/10.1016/j.rser.2018.10.014)

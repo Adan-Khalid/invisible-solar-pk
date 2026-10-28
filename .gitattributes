@@ -1,0 +1,7 @@
+# Evidence bundles are verified byte-for-byte against their on-chain SHA-256.
+# Never let git convert their line endings on checkout (Windows core.autocrlf would break the hash).
+chain/evidence/*.csv -text
+docs/evidence/*.csv -text
+*.sol text eol=lf
+# Shell scripts keep LF so bash can run them on Linux, macOS and Git Bash.
+*.sh text eol=lf

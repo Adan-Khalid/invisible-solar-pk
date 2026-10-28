@@ -1,0 +1,85 @@
+{
+  "schema": "invisible-solar-pk/evidence/v1",
+  "code_version": "0.1.0",
+  "code_hash": "3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03",
+  "estimator": "IRR hourly (invisible_solar.hidden_pv.fit_irr, Fourier order 2, country=AU)",
+  "hash_rule": "SHA-256 of the evidence file bytes exactly as published (UTF-8, LF line endings)",
+  "attestations": [
+    {
+      "station": "AEMO/NSW1",
+      "evidence_file": "AEMO_NSW1_2024.csv",
+      "evidence_sha256": "bea275a6aab76cd0bb55282308737b8afa7bfab4c5a6f1db9c995c2fd7c18b30",
+      "period_start": 20240101,
+      "period_end": 20241231,
+      "n_hours": 8782,
+      "capacity_kw_eff": 4221675,
+      "uncertainty_kw": 1371857,
+      "energy_recovery_bp": 7352,
+      "validation": {
+        "energy_recovery_pct": 73.52,
+        "corr_hourly": 0.9489,
+        "corr_daylight": 0.9155,
+        "kind": "in-sample: fitted on net load + irradiance of the same year; the PV truth is never used in fitting",
+        "truth": "AEMO MMSDM ROOFTOP_PV_ACTUAL, type MEASUREMENT (AEMO's measurement-based estimate)"
+      },
+      "uncertainty_rule": "standard deviation of the 12 monthly capacity estimates (seasonal spread), not a confidence interval"
+    },
+    {
+      "station": "AEMO/QLD1",
+      "evidence_file": "AEMO_QLD1_2024.csv",
+      "evidence_sha256": "4706e1aba9bcea9f235b696d335c60d7fddd3d9693ab0d865cc9ad4d366ac34d",
+      "period_start": 20240101,
+      "period_end": 20241231,
+      "n_hours": 8782,
+      "capacity_kw_eff": 3593430,
+      "uncertainty_kw": 1012675,
+      "energy_recovery_bp": 7426,
+      "validation": {
+        "energy_recovery_pct": 74.26,
+        "corr_hourly": 0.9654,
+        "corr_daylight": 0.9403,
+        "kind": "in-sample: fitted on net load + irradiance of the same year; the PV truth is never used in fitting",
+        "truth": "AEMO MMSDM ROOFTOP_PV_ACTUAL, type MEASUREMENT (AEMO's measurement-based estimate)"
+      },
+      "uncertainty_rule": "standard deviation of the 12 monthly capacity estimates (seasonal spread), not a confidence interval"
+    },
+    {
+      "station": "AEMO/VIC1",
+      "evidence_file": "AEMO_VIC1_2024.csv",
+      "evidence_sha256": "282f7a85a585fe252322dc8833ced6b2083ad0aac1b34949430245410d102db6",
+      "period_start": 20240101,
+      "period_end": 20241231,
+      "n_hours": 8782,
+      "capacity_kw_eff": 3723991,
+      "uncertainty_kw": 972397,
+      "energy_recovery_bp": 10281,
+      "validation": {
+        "energy_recovery_pct": 102.81,
+        "corr_hourly": 0.966,
+        "corr_daylight": 0.9428,
+        "kind": "in-sample: fitted on net load + irradiance of the same year; the PV truth is never used in fitting",
+        "truth": "AEMO MMSDM ROOFTOP_PV_ACTUAL, type MEASUREMENT (AEMO's measurement-based estimate)"
+      },
+      "uncertainty_rule": "standard deviation of the 12 monthly capacity estimates (seasonal spread), not a confidence interval"
+    },
+    {
+      "station": "AEMO/SA1",
+      "evidence_file": "AEMO_SA1_2024.csv",
+      "evidence_sha256": "64ea230372a86f84a3d9613778d94a8b6012d223b9dc4e3f49a9f2af04b9e246",
+      "period_start": 20240101,
+      "period_end": 20241231,
+      "n_hours": 8781,
+      "capacity_kw_eff": 1824219,
+      "uncertainty_kw": 422462,
+      "energy_recovery_bp": 10090,
+      "validation": {
+        "energy_recovery_pct": 100.9,
+        "corr_hourly": 0.9778,
+        "corr_daylight": 0.9615,
+        "kind": "in-sample: fitted on net load + irradiance of the same year; the PV truth is never used in fitting",
+        "truth": "AEMO MMSDM ROOFTOP_PV_ACTUAL, type MEASUREMENT (AEMO's measurement-based estimate)"
+      },
+      "uncertainty_rule": "standard deviation of the 12 monthly capacity estimates (seasonal spread), not a confidence interval"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+# Raw downloads (AEMO, NASA POWER, NEPRA, Ember) stay outside git; see data/README.md
+data/*
+!data/README.md
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+# pytest-cov output
+.coverage
+.coverage.*
+htmlcov/
+
+# Hardhat / Node
+node_modules/
+chain/artifacts/
+chain/cache/
+typechain-types/
+gas-report.txt
+# solidity-coverage (npm run coverage): report and temporary folders
+coverage/
+coverage.json
+.coverage_artifacts/
+.coverage_cache/
+.coverage_contracts/
+# `npm run deploy:local` / `anchor:local` records (localhost.json, and localhost.previous.json,
+# localhost.previous-2.json, ... after REDEPLOY=1): the local Hardhat node forgets them when it stops.
+# Keep chain/deployments/sepolia*.json, hardhat-demo.json and remix-args.json: they are published.
+chain/deployments/localhost*.json
+
+# Local scratch output, not part of the published site
+docs/proof/
+
+# Archives and logs
+*.zip
+*.log
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets: never commit (.env.example is the empty template)
+.env
+.env.*
+!.env.example
+# Key and wallet material: TLS/SSH keys, certificate bundles, keystore folders, geth keystore files
+*.pem
+*.key
+*.p12
+*.pfx
+keystore/
+UTC--*
+
+# Editor and coding-agent folders (local settings and session notes)
+.vscode/
+.idea/
+.claude/
+CLAUDE.md

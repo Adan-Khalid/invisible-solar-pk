@@ -1,0 +1,119 @@
+{
+  "contract": "BTMRegistry",
+  "source": "chain/contracts/BTMRegistry.sol",
+  "compiler": {
+    "version": "0.8.24",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris"
+  },
+  "codeHash": "0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03",
+  "evidenceBaseUri": "chain/evidence/",
+  "warning": "evidenceURI is the repo-relative path (ALLOW_RELATIVE_EVIDENCE_URI=1), which cannot be downloaded; set EVIDENCE_BASE_URI to the public https:// URL of chain/evidence/ and run this again before attesting on Sepolia (the URI stays in the Attested event for good)",
+  "steps": [
+    "Remix: create BTMRegistry.sol with the contents of chain/contracts/BTMRegistry.sol",
+    "Solidity compiler: version 0.8.24, optimization enabled, 200 runs, EVM version paris (Advanced configurations); compile",
+    "MetaMask on Sepolia with two new testnet-only accounts: fund the REGULATOR from a faucet, then send the ESTIMATOR about 0.01 Sepolia ETH from it (the estimator pays for the attest transactions)",
+    "Deploy & run: environment 'Injected Provider - MetaMask' on Sepolia; deploy from the REGULATOR account",
+    "From the regulator: setEstimator(\"<estimator address>\", true); the estimator must be a different account",
+    "Switch MetaMask to the ESTIMATOR account; for each station paste attestInput into attest() and transact",
+    "Switch back to the REGULATOR; for each station paste acceptInput into setStatus() (index 0 = the station's first attestation)",
+    "Anyone: verify() with verifyInput returns true; or run chain/scripts/verify-evidence.js with CONTRACT_ADDRESS=<address>"
+  ],
+  "stations": [
+    {
+      "station": "AEMO/NSW1",
+      "attest": {
+        "stationId": "0x927048db1c3b3cf3f26a6818466d33b4b3d3d80c75566720c7c2d7c883bf8716",
+        "periodStart": 20240101,
+        "periodEnd": 20241231,
+        "capacityKwEff": 4221675,
+        "uncertaintyKw": 1371857,
+        "energyRecoveryBp": 7352,
+        "evidenceHash": "0xbea275a6aab76cd0bb55282308737b8afa7bfab4c5a6f1db9c995c2fd7c18b30",
+        "codeHash": "0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03",
+        "evidenceURI": "chain/evidence/AEMO_NSW1_2024.csv"
+      },
+      "attestInput": "\"0x927048db1c3b3cf3f26a6818466d33b4b3d3d80c75566720c7c2d7c883bf8716\", 20240101, 20241231, 4221675, 1371857, 7352, \"0xbea275a6aab76cd0bb55282308737b8afa7bfab4c5a6f1db9c995c2fd7c18b30\", \"0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03\", \"chain/evidence/AEMO_NSW1_2024.csv\"",
+      "accept": {
+        "stationId": "0x927048db1c3b3cf3f26a6818466d33b4b3d3d80c75566720c7c2d7c883bf8716",
+        "index": 0,
+        "status": 1,
+        "note": "checked against AEMO rooftop PV: in-sample recovery 73.52%"
+      },
+      "acceptInput": "\"0x927048db1c3b3cf3f26a6818466d33b4b3d3d80c75566720c7c2d7c883bf8716\", 0, 1, \"checked against AEMO rooftop PV: in-sample recovery 73.52%\"",
+      "verifyInput": "\"0x927048db1c3b3cf3f26a6818466d33b4b3d3d80c75566720c7c2d7c883bf8716\", 0, \"0xbea275a6aab76cd0bb55282308737b8afa7bfab4c5a6f1db9c995c2fd7c18b30\""
+    },
+    {
+      "station": "AEMO/QLD1",
+      "attest": {
+        "stationId": "0xae6ab5a10215512c70dfddda31867449cd0c13a9e00ea8a2293da4a4fd0b0326",
+        "periodStart": 20240101,
+        "periodEnd": 20241231,
+        "capacityKwEff": 3593430,
+        "uncertaintyKw": 1012675,
+        "energyRecoveryBp": 7426,
+        "evidenceHash": "0x4706e1aba9bcea9f235b696d335c60d7fddd3d9693ab0d865cc9ad4d366ac34d",
+        "codeHash": "0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03",
+        "evidenceURI": "chain/evidence/AEMO_QLD1_2024.csv"
+      },
+      "attestInput": "\"0xae6ab5a10215512c70dfddda31867449cd0c13a9e00ea8a2293da4a4fd0b0326\", 20240101, 20241231, 3593430, 1012675, 7426, \"0x4706e1aba9bcea9f235b696d335c60d7fddd3d9693ab0d865cc9ad4d366ac34d\", \"0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03\", \"chain/evidence/AEMO_QLD1_2024.csv\"",
+      "accept": {
+        "stationId": "0xae6ab5a10215512c70dfddda31867449cd0c13a9e00ea8a2293da4a4fd0b0326",
+        "index": 0,
+        "status": 1,
+        "note": "checked against AEMO rooftop PV: in-sample recovery 74.26%"
+      },
+      "acceptInput": "\"0xae6ab5a10215512c70dfddda31867449cd0c13a9e00ea8a2293da4a4fd0b0326\", 0, 1, \"checked against AEMO rooftop PV: in-sample recovery 74.26%\"",
+      "verifyInput": "\"0xae6ab5a10215512c70dfddda31867449cd0c13a9e00ea8a2293da4a4fd0b0326\", 0, \"0x4706e1aba9bcea9f235b696d335c60d7fddd3d9693ab0d865cc9ad4d366ac34d\""
+    },
+    {
+      "station": "AEMO/VIC1",
+      "attest": {
+        "stationId": "0xdce13ef03b475216fbfc1956d4e3fbb41b63f7bd19589c16f322be9d690a6dae",
+        "periodStart": 20240101,
+        "periodEnd": 20241231,
+        "capacityKwEff": 3723991,
+        "uncertaintyKw": 972397,
+        "energyRecoveryBp": 10281,
+        "evidenceHash": "0x282f7a85a585fe252322dc8833ced6b2083ad0aac1b34949430245410d102db6",
+        "codeHash": "0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03",
+        "evidenceURI": "chain/evidence/AEMO_VIC1_2024.csv"
+      },
+      "attestInput": "\"0xdce13ef03b475216fbfc1956d4e3fbb41b63f7bd19589c16f322be9d690a6dae\", 20240101, 20241231, 3723991, 972397, 10281, \"0x282f7a85a585fe252322dc8833ced6b2083ad0aac1b34949430245410d102db6\", \"0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03\", \"chain/evidence/AEMO_VIC1_2024.csv\"",
+      "accept": {
+        "stationId": "0xdce13ef03b475216fbfc1956d4e3fbb41b63f7bd19589c16f322be9d690a6dae",
+        "index": 0,
+        "status": 1,
+        "note": "checked against AEMO rooftop PV: in-sample recovery 102.81%"
+      },
+      "acceptInput": "\"0xdce13ef03b475216fbfc1956d4e3fbb41b63f7bd19589c16f322be9d690a6dae\", 0, 1, \"checked against AEMO rooftop PV: in-sample recovery 102.81%\"",
+      "verifyInput": "\"0xdce13ef03b475216fbfc1956d4e3fbb41b63f7bd19589c16f322be9d690a6dae\", 0, \"0x282f7a85a585fe252322dc8833ced6b2083ad0aac1b34949430245410d102db6\""
+    },
+    {
+      "station": "AEMO/SA1",
+      "attest": {
+        "stationId": "0xc819685e1ccfbfafef8200147ec9e1aba24adfc49847f96bb02a180ead851268",
+        "periodStart": 20240101,
+        "periodEnd": 20241231,
+        "capacityKwEff": 1824219,
+        "uncertaintyKw": 422462,
+        "energyRecoveryBp": 10090,
+        "evidenceHash": "0x64ea230372a86f84a3d9613778d94a8b6012d223b9dc4e3f49a9f2af04b9e246",
+        "codeHash": "0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03",
+        "evidenceURI": "chain/evidence/AEMO_SA1_2024.csv"
+      },
+      "attestInput": "\"0xc819685e1ccfbfafef8200147ec9e1aba24adfc49847f96bb02a180ead851268\", 20240101, 20241231, 1824219, 422462, 10090, \"0x64ea230372a86f84a3d9613778d94a8b6012d223b9dc4e3f49a9f2af04b9e246\", \"0x3dce0ba4e45bb0fc264766e97cb31d29727ef2e0c9df8d90abd81c1d48f32a03\", \"chain/evidence/AEMO_SA1_2024.csv\"",
+      "accept": {
+        "stationId": "0xc819685e1ccfbfafef8200147ec9e1aba24adfc49847f96bb02a180ead851268",
+        "index": 0,
+        "status": 1,
+        "note": "checked against AEMO rooftop PV: in-sample recovery 100.90%"
+      },
+      "acceptInput": "\"0xc819685e1ccfbfafef8200147ec9e1aba24adfc49847f96bb02a180ead851268\", 0, 1, \"checked against AEMO rooftop PV: in-sample recovery 100.90%\"",
+      "verifyInput": "\"0xc819685e1ccfbfafef8200147ec9e1aba24adfc49847f96bb02a180ead851268\", 0, \"0x64ea230372a86f84a3d9613778d94a8b6012d223b9dc4e3f49a9f2af04b9e246\""
+    }
+  ]
+}

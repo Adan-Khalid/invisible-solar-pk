@@ -1,0 +1,12 @@
+# Exact tested versions: requirements-lock.txt. pandas <4 because the hash-anchored estimator
+# modules use DatetimeIndex.dayofweek/dayofyear, which pandas 3 deprecates (removal expected in 4).
+pandas>=2.2,<4
+numpy>=1.26
+scikit-learn>=1.4
+lightgbm>=4.3
+statsmodels>=0.14
+matplotlib>=3.8
+scipy>=1.12
+pulp>=2.8
+requests>=2.31
+holidays>=0.50
