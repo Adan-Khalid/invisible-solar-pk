@@ -1,0 +1,117 @@
+# Continuous integration for Invisible Solar PK.
+#   python   - installs the exact versions in requirements-lock.txt, runs the estimator and evidence
+#              tests (pytest), then chain/verify_estimate.py re-runs the estimator on the published
+#              evidence files and compares the result with manifest.json. Raw AEMO/NASA downloads
+#              are not in the repo, so the data-dependent tests are expected to skip.
+#   chain    - BTMRegistry unit + evidence tests, the guard logic of the deployment scripts
+#              (chain/scripts/lib.test.js: EVIDENCE_BASE_URI rules, manifest and hash checks, estimator
+#              top-up, redeploy plan), the end-to-end demo on Hardhat's in-process EVM (no public
+#              network, no secrets, no private keys) and the website's hashing tests, on every Node
+#              major that Hardhat 2.29 supports.
+#   evidence - checks the published evidence files and the estimator source hash against
+#              manifest.json with coreutils sha256sum and Python's hashlib only, i.e. without
+#              project code (see docs/SECURITY.md).
+# Supply chain: every third-party action is pinned to a full commit SHA, with the release it was
+# taken from in the trailing comment (all three run on the Node 24 action runtime). Dependabot
+# (.github/dependabot.yml) proposes SHA updates. Checkouts use persist-credentials: false, so
+# GITHUB_TOKEN is not left in .git/config while npm and pip run package install scripts.
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# An explicit `shell: bash` makes GitHub run every step with -eo pipefail, so a failure on the
+# left of a pipe fails the step.
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-lock.txt
+      # The anchored integers must be reproduced exactly, so CI uses the pinned versions the
+      # results were produced with rather than the lower bounds in requirements.txt.
+      - name: Install dependencies (exact versions from requirements-lock.txt)
+        run: |
+          python -m pip install -r requirements-lock.txt
+          python -m pip check
+      - name: Run tests
+        run: python -m pytest -q
+      - name: Re-run the estimator on the published evidence files
+        run: python chain/verify_estimate.py
+
+  chain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24] # Hardhat 2.29 supports Node ^20, ^22 and ^24; 24 is the author's local version
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - name: Install dependencies (exact versions from package-lock.json)
+        run: npm ci
+      - name: Contract tests
+        run: npx hardhat test
+      - name: Deployment-script guard tests (chain/scripts/lib.js, plain node:test, no network)
+        run: node --test chain/scripts/lib.test.js
+      - name: End-to-end demo (deploy, attest, accept, verify, tamper check)
+        run: npx hardhat run chain/scripts/demo.js
+      - name: Website hashing tests (docs/assets/verify.js)
+        run: node docs/assets/verify.test.mjs
+
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - name: Evidence files match manifest.json (sha256sum), docs/ copies included
+        run: |
+          python3 - <<'EOF' | sha256sum --check --strict -
+          import json
+          manifest = json.load(open("chain/evidence/manifest.json", encoding="utf-8"))
+          for a in manifest["attestations"]:
+              for folder in ("chain/evidence", "docs/evidence"):
+                  print(f'{a["evidence_sha256"]}  {folder}/{a["evidence_file"]}')
+          EOF
+          cmp chain/evidence/manifest.json docs/data/manifest.json
+      - name: Estimator source matches the anchored code_hash
+        # Same rule as invisible_solar.evidence.code_hash, re-implemented with hashlib only.
+        run: |
+          python3 - <<'EOF'
+          import hashlib, json, sys
+          h = hashlib.sha256()
+          for name in sorted(["evidence.py", "features.py", "hidden_pv.py", "metrics.py"]):
+              data = open(f"src/invisible_solar/{name}", "rb").read().replace(b"\r\n", b"\n")
+              h.update(name.encode() + b"\0" + data + b"\0")
+          expected = json.load(open("chain/evidence/manifest.json", encoding="utf-8"))["code_hash"]
+          print(f"code_hash {h.hexdigest()} (manifest {expected})")
+          sys.exit(h.hexdigest() != expected)
+          EOF

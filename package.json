@@ -1,0 +1,34 @@
+{
+  "name": "invisible-solar-pk",
+  "version": "0.2.0",
+  "private": true,
+  "description": "BTMRegistry: on-chain, auditable registry of hidden rooftop-solar estimates (Hardhat project for the chain/ part of Invisible Solar PK)",
+  "author": "Adan Khalid",
+  "license": "MIT",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:gas": "cross-env REPORT_GAS=true hardhat test",
+    "test:web": "node docs/assets/verify.test.mjs",
+    "test:scripts": "node --test chain/scripts/lib.test.js",
+    "coverage": "hardhat coverage",
+    "node": "hardhat node",
+    "demo": "hardhat run chain/scripts/demo.js",
+    "deploy:local": "hardhat run chain/scripts/deploy.js --network localhost",
+    "anchor:local": "hardhat run chain/scripts/anchor.js --network localhost",
+    "verify:local": "hardhat run chain/scripts/verify-evidence.js --network localhost",
+    "deploy:sepolia": "hardhat run chain/scripts/deploy.js --network sepolia",
+    "anchor:sepolia": "hardhat run chain/scripts/anchor.js --network sepolia",
+    "verify:sepolia": "hardhat run chain/scripts/verify-evidence.js --network sepolia",
+    "remix-args": "node -r dotenv/config chain/scripts/remix-args.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "6.1.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "hardhat": "2.29.1"
+  },
+  "engines": {
+    "node": "^20.9.0 || ^22.0.0 || ^24.0.0"
+  }
+}

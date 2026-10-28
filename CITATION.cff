@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Invisible Solar PK: estimating hidden rooftop PV from net load and satellite irradiance, with on-chain evidence anchoring"
+abstract: >-
+  Estimates behind-the-meter rooftop solar from a utility's hourly net load and free NASA POWER
+  satellite irradiance (Irradiance-Residual Regression), validated on four Australian NEM regions
+  where AEMO publishes rooftop PV, with Pakistan as the target case. Each estimate is anchored in
+  a Solidity registry (BTMRegistry) together with the SHA-256 of its evidence file and of the
+  estimator code, so anyone can re-hash the file and re-run the estimate.
+authors:
+  - family-names: Khalid
+    given-names: Adan
+    affiliation: "NUST College of Electrical and Mechanical Engineering, Pakistan"
+version: 0.2.0
+date-released: 2026-10-24
+license: MIT
+repository-code: "https://github.com/Adan-Khalid/invisible-solar-pk"
+keywords:
+  - rooftop solar
+  - behind-the-meter PV
+  - net load
+  - NASA POWER
+  - Pakistan
+  - smart contract
+  - data verification

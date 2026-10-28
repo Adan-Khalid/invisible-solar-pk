@@ -1,0 +1,46 @@
+{
+  "source": "results/tables/m1_multiregion_nem.csv",
+  "method": "IRR hourly",
+  "fields": {
+    "recovery_full_pct": "energy recovered, fitted and scored on the full year 2024 (in-sample)",
+    "corr_full": "hourly correlation with AEMO rooftop PV, all hours, full year",
+    "corr_daylight_full": "hourly correlation, daylight hours only, full year",
+    "recovery_oddeven_pct": "held-out: fitted on odd months, scored on even months",
+    "corr_oddeven": "hourly correlation on the held-out even months",
+    "naive_recovery_full_pct": "naive midday-dip method (no irradiance), full year"
+  },
+  "regions": {
+    "AEMO/NSW1": {
+      "recovery_full_pct": 73.5,
+      "corr_full": 0.949,
+      "corr_daylight_full": 0.915,
+      "recovery_oddeven_pct": 66.3,
+      "corr_oddeven": 0.916,
+      "naive_recovery_full_pct": 24.9
+    },
+    "AEMO/QLD1": {
+      "recovery_full_pct": 74.3,
+      "corr_full": 0.965,
+      "corr_daylight_full": 0.94,
+      "recovery_oddeven_pct": 72.6,
+      "corr_oddeven": 0.953,
+      "naive_recovery_full_pct": 23.5
+    },
+    "AEMO/VIC1": {
+      "recovery_full_pct": 102.8,
+      "corr_full": 0.966,
+      "corr_daylight_full": 0.943,
+      "recovery_oddeven_pct": 102.2,
+      "corr_oddeven": 0.936,
+      "naive_recovery_full_pct": 29.9
+    },
+    "AEMO/SA1": {
+      "recovery_full_pct": 100.9,
+      "corr_full": 0.978,
+      "corr_daylight_full": 0.961,
+      "recovery_oddeven_pct": 99.3,
+      "corr_oddeven": 0.965,
+      "naive_recovery_full_pct": 55.4
+    }
+  }
+}

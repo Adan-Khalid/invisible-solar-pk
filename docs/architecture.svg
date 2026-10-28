@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1060" viewBox="0 0 1600 1060" role="img" aria-labelledby="t d">
+  <title id="t">Invisible Solar PK architecture</title>
+  <desc id="d">Off-chain: a net-load meter and NASA POWER irradiance feed the IRR estimator, which writes an evidence file; its SHA-256 goes to the estimator wallet and the file is published on GitHub Pages (a Zenodo mirror is planned, not yet made). On-chain: the estimator wallet calls attest on BTMRegistry (Hardhat local network now, Sepolia when deployed); the regulator wallet accepts or disputes. Verifiers: planners read latestAccepted; anyone downloads the public file, re-hashes it in the browser or on the command line and calls verify.</desc>
+  <defs>
+    <style>
+      .sans { font-family: "Space Grotesk", "Segoe UI", Helvetica, Arial, sans-serif; }
+      .mono { font-family: "IBM Plex Mono", Consolas, Menlo, monospace; }
+      .bg { fill: #fbf8f1; }
+      .title { fill: #16202b; }
+      .sub, .key { fill: #394552; }
+      .h { font-size: 19px; font-weight: 700; fill: #16202b; }
+      .b { font-size: 14px; fill: #394552; }
+      .m { font-size: 13px; fill: #394552; }
+      .strong { fill: #16202b; font-weight: 600; }
+      .note { fill: #5a6570; font-style: italic; }
+      .lane { font-size: 14px; font-weight: 600; letter-spacing: 1.6px; fill: #5a6570; }
+      .p-off { fill: #f4efe4; stroke: #d8cfbd; stroke-width: 1.5; }
+      .p-on { fill: #16202b; stroke: #16202b; stroke-width: 1.5; }
+      .p-ver { fill: #e8f2ef; stroke: #b9d6cf; stroke-width: 1.5; }
+      .box { fill: #ffffff; stroke: #a99d85; stroke-width: 1.5; }
+      .dark .lane { fill: #c6ccd2; }
+      .dark .h { fill: #f4efe4; }
+      .dark .b, .dark .m { fill: #c6ccd2; }
+      .dark .muted { fill: #a8b2bc; }
+      .dark .amber { fill: #f2b24c; }
+      .dbox { fill: #1f2b37; stroke: #3b4a5a; stroke-width: 1.5; }
+      .dbox.reg { stroke: #c98016; }
+      .rule-on { stroke: #3b4a5a; }
+      .pill-on { fill: #2a3a2f; stroke: #5cc98a; stroke-width: 1; }
+      .pill-on-dot { fill: #5cc98a; }
+      .dark .pill-on-text { fill: #e8f5ec; }
+      .pill-off { fill: none; stroke: #6f7a86; stroke-width: 1; stroke-dasharray: 4 4; }
+      .pill-off-dot { fill: none; stroke: #a8b2bc; stroke-width: 1.5; }
+      .arrow { fill: none; stroke: #7d7262; stroke-width: 2; stroke-linejoin: round; }
+      .arrow-l { fill: none; stroke: #a99d85; stroke-width: 2; }
+      .mk { fill: #7d7262; }
+      .mkl { fill: #a99d85; }
+      .dash { stroke-dasharray: 7 6; }
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #171f28; }
+        .title, .h, .strong { fill: #ece6da; }
+        .sub, .key, .b, .m { fill: #c6ccd2; }
+        .note, .lane { fill: #9ba5af; }
+        .p-off { fill: #121920; stroke: #29333e; }
+        .p-on { fill: #0c1117; stroke: #2c3947; }
+        .p-ver { fill: #0f1f1d; stroke: #24504a; }
+        .box { fill: #1d2732; stroke: #43505e; }
+        .dbox { fill: #151e27; stroke: #2c3947; }
+        .arrow { stroke: #a39782; }
+        .mk { fill: #a39782; }
+        .arrow-l { stroke: #6f6556; }
+        .mkl { fill: #6f6556; }
+      }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="mk" d="M0 0L10 5L0 10z"/>
+    </marker>
+    <marker id="al" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="mkl" d="M0 0L10 5L0 10z"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1600" height="1060"/>
+
+  <!-- title + legend -->
+  <text class="sans title" x="32" y="52" font-size="30" font-weight="700">Invisible Solar PK · architecture</text>
+  <text class="sans sub" x="32" y="82" font-size="16">The estimate is made off-chain, its evidence is fingerprinted on-chain, and anyone can re-check it.</text>
+  <g class="sans key" font-size="13">
+    <line class="arrow" x1="1180" y1="56" x2="1214" y2="56" marker-end="url(#a)"/>
+    <text class="key" x="1224" y="61">data / calls</text>
+    <line class="arrow dash" x1="1340" y1="56" x2="1374" y2="56" marker-end="url(#a)"/>
+    <text class="key" x="1384" y="61">public file download</text>
+  </g>
+
+  <!-- panels -->
+  <rect class="p-off" x="32" y="104" width="568" height="876" rx="16"/>
+  <rect class="p-on" x="696" y="104" width="392" height="876" rx="16"/>
+  <rect class="p-ver" x="1152" y="104" width="416" height="876" rx="16"/>
+  <text class="mono lane" x="56" y="140">OFF-CHAIN · DATA + ESTIMATE</text>
+  <g class="dark"><text class="mono lane" x="720" y="140">ON-CHAIN · BTMREGISTRY</text></g>
+  <text class="mono lane" x="1176" y="140">VERIFIERS · ANYONE</text>
+
+  <!-- off-chain -->
+  <g class="sans">
+    <rect class="box" x="56" y="168" width="248" height="112" rx="10"/>
+    <rect x="56" y="168" width="6" height="112" rx="3" fill="#6f7a86"/>
+    <text class="h" x="80" y="204">Net-load meter</text>
+    <text class="b" x="80" y="232">grid station or feeder</text>
+    <text class="b" x="80" y="256">hourly MW, already recorded</text>
+
+    <rect class="box" x="328" y="168" width="248" height="112" rx="10"/>
+    <rect x="328" y="168" width="6" height="112" rx="3" fill="#c47000"/>
+    <text class="h" x="352" y="204">NASA POWER</text>
+    <text class="b" x="352" y="232">satellite GHI + temperature</text>
+    <text class="b" x="352" y="256">free, global, hourly</text>
+
+    <rect class="box" x="56" y="328" width="520" height="140" rx="10"/>
+    <rect x="56" y="328" width="6" height="140" rx="3" fill="#00897b"/>
+    <text class="h" x="80" y="364">IRR estimator (Python)</text>
+    <text class="mono m" x="80" y="394">net load ~ hour×month + day type</text>
+    <text class="mono m" x="80" y="416">         + degree terms + GHI × β(t)</text>
+    <text class="mono m strong" x="80" y="446">hidden PV = β(t) × GHI → capacity ± spread</text>
+
+    <rect class="box" x="56" y="516" width="300" height="120" rx="10"/>
+    <text class="h" x="80" y="552">Evidence file (CSV)</text>
+    <text class="mono m" x="80" y="580">timestamp, net_load_mw, ghi_wm2,</text>
+    <text class="mono m" x="80" y="600">t2m_c, rooftop_pv_mw_measured*</text>
+    <text class="mono m" x="80" y="620">UTF-8 · LF · 3 decimals</text>
+
+    <rect class="box" x="396" y="516" width="180" height="120" rx="10"/>
+    <text class="h" x="418" y="552">SHA-256</text>
+    <text class="b" x="418" y="580">of the exact bytes</text>
+    <text class="mono m" x="418" y="606">= evidenceHash</text>
+
+    <rect class="box" x="56" y="684" width="520" height="104" rx="10"/>
+    <text class="h" x="80" y="718">Evidence store</text>
+    <text class="b" x="80" y="744">GitHub Pages /evidence (Zenodo mirror planned)</text>
+    <text class="b" x="80" y="768">URI emitted in the Attested event</text>
+
+    <text class="b note" x="56" y="842">* AEMO rooftop PV rides along only to validate the estimate;</text>
+    <text class="b note" x="56" y="864">   it is never used in fitting.</text>
+  </g>
+  <path class="arrow" d="M180 280V326" marker-end="url(#a)"/>
+  <path class="arrow" d="M452 280V326" marker-end="url(#a)"/>
+  <path class="arrow" d="M206 468V514" marker-end="url(#a)"/>
+  <path class="arrow" d="M356 576H394" marker-end="url(#a)"/>
+  <path class="arrow" d="M206 636V682" marker-end="url(#a)"/>
+
+  <!-- hash + estimate go to the estimator wallet -->
+  <path class="arrow" d="M576 560H648V224H718" marker-end="url(#a)"/>
+
+  <!-- on-chain -->
+  <g class="sans dark">
+    <rect class="dbox" x="720" y="168" width="344" height="112" rx="10"/>
+    <text class="h" x="740" y="204">Estimator wallet</text>
+    <text class="mono m" x="740" y="234">attest(station, period, capacity, ±,</text>
+    <text class="mono m" x="740" y="256">recovery, evidenceHash, codeHash, URI)</text>
+
+    <rect class="dbox reg" x="720" y="328" width="344" height="460" rx="10"/>
+    <text class="h" x="740" y="370" font-size="26">BTMRegistry</text>
+    <text class="b" x="740" y="396">Solidity 0.8.24 · EVM smart contract</text>
+    <rect class="pill-on" x="740" y="414" width="304" height="32" rx="16"/>
+    <circle class="pill-on-dot" cx="760" cy="430" r="5"/>
+    <text class="b pill-on-text" x="774" y="435">Hardhat local network (today)</text>
+    <rect class="pill-off" x="740" y="456" width="304" height="32" rx="16"/>
+    <circle class="pill-off-dot" cx="760" cy="472" r="5"/>
+    <text class="b" x="774" y="477">Sepolia testnet (when deployed)</text>
+    <line class="rule-on" x1="740" y1="508" x2="1044" y2="508"/>
+    <text class="mono m" x="740" y="538">stationId → attestations[]</text>
+    <text class="mono m" x="740" y="562">capacity kW · ± kW · recovery bp</text>
+    <text class="mono m" x="740" y="586">evidenceHash · codeHash · estimator</text>
+    <text class="mono m amber" x="740" y="620">status: Pending → Accepted | Disputed</text>
+    <line class="rule-on" x1="740" y1="642" x2="1044" y2="642"/>
+    <text class="mono m" x="740" y="672">verify(stationId, i, hash) → bool</text>
+    <text class="mono m" x="740" y="696">latestAccepted(stationId)</text>
+    <text class="mono m" x="740" y="720">count / get(stationId, i)</text>
+    <text class="b muted" x="740" y="760" font-size="13">events: Attested · StatusChanged</text>
+
+    <rect class="dbox" x="720" y="836" width="344" height="112" rx="10"/>
+    <text class="h" x="740" y="872">Regulator wallet</text>
+    <text class="mono m" x="740" y="902">setStatus(Accepted | Disputed, note)</text>
+    <text class="mono m" x="740" y="926">setEstimator(who, allowed)</text>
+  </g>
+  <path class="arrow-l" d="M892 280V326" marker-end="url(#al)"/>
+  <path class="arrow-l" d="M892 836V790" marker-end="url(#al)"/>
+
+  <!-- verifiers -->
+  <g class="sans">
+    <text class="h" x="1176" y="196" font-size="17">What a check tells you</text>
+    <text class="b" x="1176" y="226">✓ the file is byte-identical to the anchored one</text>
+    <text class="b" x="1176" y="250">✓ who attested it, when, and with which code</text>
+    <text class="b" x="1176" y="274">✓ whether the regulator accepted or disputed it</text>
+    <text class="b note" x="1176" y="306">It does not prove the meter honest or the model right.</text>
+
+    <rect class="box" x="1176" y="360" width="368" height="110" rx="10"/>
+    <text class="h" x="1200" y="396">Planner / DISCO</text>
+    <text class="mono m" x="1200" y="424">latestAccepted(stationId)</text>
+    <text class="b" x="1200" y="450">→ accepted capacity for planning</text>
+
+    <rect class="box" x="1176" y="500" width="368" height="110" rx="10"/>
+    <text class="h" x="1200" y="536">Browser (this site)</text>
+    <text class="b" x="1200" y="564">fetch file → SHA-256 (WebCrypto)</text>
+    <text class="b" x="1200" y="588">compare; verify() when on Sepolia</text>
+
+    <rect class="box" x="1176" y="640" width="368" height="134" rx="10"/>
+    <text class="h" x="1200" y="676">Command line</text>
+    <text class="mono m" x="1200" y="704">sha256sum · Get-FileHash · certutil</text>
+    <text class="mono m" x="1200" y="728">npm run verify:local → verify()</text>
+    <text class="b note" x="1200" y="754" font-size="13">verify:sepolia once it is deployed there</text>
+  </g>
+  <path class="arrow" d="M1064 415H1174" marker-end="url(#a)"/>
+  <path class="arrow" d="M1064 555H1174" marker-end="url(#a)"/>
+  <path class="arrow" d="M1064 695H1174" marker-end="url(#a)"/>
+
+  <!-- the file itself travels outside the chain, to both kinds of re-hashing verifier -->
+  <path class="arrow dash" d="M576 736H636V1012H1560V555H1546" marker-end="url(#a)"/>
+  <path class="arrow dash" d="M1560 695H1546" marker-end="url(#a)"/>
+  <text class="sans key" x="1096" y="1003" font-size="13" text-anchor="middle">evidence file over HTTPS (public URL)</text>
+</svg>

@@ -1,0 +1,61 @@
+city,injection_irradiance,method,n_homes,homes_with_pv,penetration_pct,injected_kw_dc,injected_effective_kw,estimated_effective_kw,energy_recovery_pct,r2_hourly,corr_hourly,feeder_mean_kw,daytime_net_min_kw
+Lahore,"ground station (REWD-P), independent of estimator",IRR hourly,10,2,20.0,10.9,8.2,0.0,0.5168021920830294,-0.561587316819244,0.2924447107529723,9.2,-4.5
+Lahore,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,2,20.0,10.9,8.2,2.1,19.95551601269059,-0.15765849241573915,0.4626238518311776,9.2,-4.5
+Lahore,"ground station (REWD-P), independent of estimator",IRR hourly,10,4,40.0,22.5,16.9,1.2,7.287672929934671,-0.35177410883103133,0.5373786560198675,9.2,-11.8
+Lahore,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,4,40.0,22.5,16.9,4.7,22.935252915308574,-0.014465568227129744,0.6099602988501379,9.2,-11.8
+Lahore,"ground station (REWD-P), independent of estimator",IRR hourly,10,6,60.0,31.7,23.8,3.5,14.441394369367359,-0.15335003206532805,0.7313188261768256,9.2,-17.6
+Lahore,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,6,60.0,31.7,23.8,7.9,28.84159985346799,0.15882148290270626,0.7635690383559601,9.2,-17.6
+Lahore,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,2,20.0,10.9,7.8,1.0,13.67302082894355,-0.1631821889943601,0.5727658779941989,9.2,-4.4
+Lahore,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,2,20.0,10.9,7.8,3.8,40.24496806266866,0.08778407066159155,0.5552585127688419,9.2,-4.4
+Lahore,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,4,40.0,22.5,16.1,8.9,54.04240040496988,0.6739492496632358,0.9712076193574679,9.2,-11.4
+Lahore,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,4,40.0,22.5,16.1,10.9,61.66826042350577,0.6351420878516671,0.8544934858825989,9.2,-11.4
+Lahore,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,6,60.0,31.7,22.7,15.4,66.28817146672262,0.8277948237804384,0.9898024292957556,9.2,-17.1
+Lahore,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,6,60.0,31.7,22.7,17.5,71.7752144047504,0.8112991982724834,0.9386640196986907,9.2,-17.1
+Karachi,"ground station (REWD-P), independent of estimator",IRR hourly,10,2,20.0,10.9,8.1,1.8,24.176163742488793,0.06990298352649671,0.7341439137473488,9.4,-4.2
+Karachi,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,2,20.0,10.9,8.1,1.0,14.847741352015392,-0.17436024701142272,0.5605074409128875,9.4,-4.2
+Karachi,"ground station (REWD-P), independent of estimator",IRR hourly,10,4,40.0,22.5,16.8,6.4,38.933658586522284,0.40828982775959277,0.9327543358539512,9.4,-12.2
+Karachi,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,4,40.0,22.5,16.8,4.3,27.73188864159965,0.13760321875456716,0.73700733679171,9.4,-12.2
+Karachi,"ground station (REWD-P), independent of estimator",IRR hourly,10,6,60.0,31.7,23.6,10.1,42.948223499848545,0.4850492942229493,0.9563758310876916,9.4,-18.5
+Karachi,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,6,60.0,31.7,23.6,8.4,36.8069855953802,0.3478140545583017,0.8607561274447078,9.4,-18.5
+Karachi,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,2,20.0,10.9,7.9,5.0,65.53955726753338,0.7832292574130505,0.9476780846292318,9.4,-4.3
+Karachi,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,2,20.0,10.9,7.9,2.2,30.728260800053576,0.1536173777842259,0.6701797253220839,9.4,-4.3
+Karachi,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,4,40.0,22.5,16.4,13.2,81.04049943939931,0.9383838051306429,0.9900873995120252,9.4,-12.4
+Karachi,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,4,40.0,22.5,16.4,9.5,59.36300587446289,0.6999997830610649,0.922791260476808,9.4,-12.4
+Karachi,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,6,60.0,31.7,23.0,19.7,85.22653200156539,0.9639137986387744,0.9949504931869846,9.4,-18.7
+Karachi,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,6,60.0,31.7,23.0,15.9,69.83785005452437,0.8392182302617157,0.9682451903160149,9.4,-18.7
+Islamabad,"ground station (REWD-P), independent of estimator",IRR hourly,10,2,20.0,10.9,8.0,4.7,51.512868991292734,0.5381062308492304,0.8729742342112473,5.3,-4.7
+Islamabad,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,2,20.0,10.9,8.0,5.5,59.99278838914158,0.44713307029847216,0.7333466569549465,5.3,-4.7
+Islamabad,"ground station (REWD-P), independent of estimator",IRR hourly,10,4,40.0,22.5,16.6,10.6,58.586954947701805,0.6814961025176023,0.9465145602229912,5.3,-12.8
+Islamabad,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,4,40.0,22.5,16.6,11.7,64.06405819163564,0.6779602083715488,0.8835157208120765,5.3,-12.8
+Islamabad,"ground station (REWD-P), independent of estimator",IRR hourly,10,6,60.0,31.7,23.4,15.3,60.497313288037844,0.7120227056076391,0.9561517715360588,5.3,-19.3
+Islamabad,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,6,60.0,31.7,23.4,16.8,66.21907971720391,0.741925984922901,0.9251911882481851,5.3,-19.3
+Islamabad,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,2,20.0,10.9,7.9,7.0,82.51162898518251,0.8944233150067756,0.9592443063306173,5.3,-4.4
+Islamabad,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,2,20.0,10.9,7.9,7.1,81.77867688817955,0.5995420689969685,0.8108895197563044,5.3,-4.4
+Islamabad,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,4,40.0,22.5,16.4,15.4,89.81537733495234,0.9717516670823749,0.9914690418285068,5.3,-12.2
+Islamabad,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,4,40.0,22.5,16.4,15.5,89.5597614822848,0.9025591988072194,0.9531775319699245,5.3,-12.2
+Islamabad,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,6,60.0,31.7,23.1,22.0,91.78775605096966,0.9838931336299627,0.9956511935859976,5.3,-18.4
+Islamabad,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,6,60.0,31.7,23.1,22.2,91.78474644968229,0.9502592194164794,0.9770446518925785,5.3,-18.4
+Multan,"ground station (REWD-P), independent of estimator",IRR hourly,10,2,20.0,10.9,8.4,1.6,20.912288346608495,-0.06741636039275178,0.5719651559514659,7.4,-4.8
+Multan,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,2,20.0,10.9,8.4,3.4,41.95288636521894,0.0020411818481473887,0.559671007211054,7.4,-4.8
+Multan,"ground station (REWD-P), independent of estimator",IRR hourly,10,4,40.0,22.5,17.4,4.0,23.48069206332127,0.04935034086334289,0.7331403961733619,7.4,-12.7
+Multan,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,4,40.0,22.5,17.4,5.3,31.372495834838148,0.08988045865339822,0.6108055281350633,7.4,-12.7
+Multan,"ground station (REWD-P), independent of estimator",IRR hourly,10,6,60.0,31.7,24.4,6.4,25.993975245290034,0.12439206215169851,0.8208187151836119,7.4,-19.1
+Multan,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,6,60.0,31.7,24.4,7.5,30.992609461409486,0.1524544727499575,0.6795465869243779,7.4,-19.1
+Multan,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,2,20.0,10.9,7.7,5.9,75.92799178369916,0.7282755450109686,0.8728498304291243,7.4,-4.8
+Multan,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,2,20.0,10.9,7.7,6.3,81.89621534857977,0.024636718690299153,0.6782399775481698,7.4,-4.8
+Multan,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,4,40.0,22.5,16.0,14.2,86.64208144266058,0.9319142759082525,0.9715544934228669,7.4,-12.5
+Multan,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,4,40.0,22.5,16.0,13.9,84.84509129578863,0.6847253966389311,0.8565725491196586,7.4,-12.5
+Multan,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,6,60.0,31.7,22.5,20.6,89.53542351755596,0.9632967551503215,0.9857856229164762,7.4,-18.5
+Multan,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,6,60.0,31.7,22.5,20.3,88.33675787025138,0.8395601352670317,0.9234504444005847,7.4,-18.5
+Peshawar,"ground station (REWD-P), independent of estimator",IRR hourly,10,2,20.0,10.9,7.6,3.2,35.453235904833804,0.24520018706300328,0.7534107025883772,6.2,-5.5
+Peshawar,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,2,20.0,10.9,7.6,5.2,56.61240393887284,0.271156952201563,0.6496788037071428,6.2,-5.5
+Peshawar,"ground station (REWD-P), independent of estimator",IRR hourly,10,4,40.0,22.5,15.7,8.7,49.56262424954957,0.556333891827566,0.9263173422614905,6.2,-13.6
+Peshawar,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,4,40.0,22.5,15.7,10.4,55.464053530661275,0.4438043928880001,0.7457257969977419,6.2,-13.6
+Peshawar,"ground station (REWD-P), independent of estimator",IRR hourly,10,6,60.0,31.7,22.2,13.1,53.60762964872702,0.6282548585855054,0.9497390340716014,6.2,-20.2
+Peshawar,"ground station (REWD-P), independent of estimator",IRR daily-energy,10,6,60.0,31.7,22.2,15.0,58.58380833524929,0.5649874150883818,0.8225391273685084,6.2,-20.2
+Peshawar,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,2,20.0,10.9,7.9,5.8,68.04464267505126,0.7686753750461413,0.9330746979155736,6.2,-5.4
+Peshawar,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,2,20.0,10.9,7.9,6.7,72.05570360329014,0.2895335803670921,0.6708851439967095,6.2,-5.4
+Peshawar,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,4,40.0,22.5,16.3,14.2,82.85966964495857,0.9404091274135934,0.9889576079856791,6.2,-13.7
+Peshawar,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,4,40.0,22.5,16.3,14.2,77.86448779055989,0.6723194719450098,0.8387295277499573,6.2,-13.7
+Peshawar,NASA POWER (same proxy as estimator; upper bound),IRR hourly,10,6,60.0,31.7,22.9,20.8,86.86047066839318,0.9672350402553669,0.9947675518185978,6.2,-20.3
+Peshawar,NASA POWER (same proxy as estimator; upper bound),IRR daily-energy,10,6,60.0,31.7,22.9,20.9,83.54257218650267,0.8343649130211752,0.9220255568639002,6.2,-20.3

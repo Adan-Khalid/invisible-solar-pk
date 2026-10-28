@@ -1,0 +1,16 @@
+# Keeps the commit-SHA pins in .github/workflows/ci.yml current: Dependabot updates the SHA and the
+# "# vX.Y.Z" comment together, in one grouped pull request per month.
+# npm and pip are deliberately not listed. The npm advisories are in the Hardhat 2 development
+# toolchain and need the Hardhat 3 migration (docs/SECURITY.md, "Dependencies"), and the Python
+# pins in requirements-lock.txt are what the anchored estimates were reproduced with.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      github-actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: ci

@@ -1,0 +1,7 @@
+{
+ "tables": [
+  "m1_pk_scale_curve.csv",
+  "m1_pk_scale_curve_raw.csv"
+ ],
+ "nasa_power_clock": "LST = UTC + round(lon/15) h, moved onto PKT by whole-hour shifts (invisible_solar.data.lst_to_clock; Karachi +1 h, other cities 0 h)"
+}
